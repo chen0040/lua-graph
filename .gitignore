@@ -1,3 +1,8 @@
+.idea/
+target/
+*.iml
+.vagrant/
+
 # Compiled Lua sources
 luac.out
 
