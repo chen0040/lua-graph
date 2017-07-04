@@ -17,6 +17,10 @@ function graph.Edge.create(v, w, weight)
     local s = {}
     setmetatable(s, graph.Edge)
 
+    if weight == nil then
+        weight = 1.0
+    end
+
     s.v = v
     s.w = w
     s.weight = weight
@@ -47,7 +51,11 @@ end
 
 function graph.create(V, directed)
     local g = {}
-    setmetatable(g, hashmap)
+    setmetatable(g, graph)
+
+    if directed == nil then
+        directed = false
+    end
 
     g.V = V
     g.adjList = {}
@@ -63,8 +71,8 @@ function graph:adj(v)
     return self.adjList[v]
 end
 
-function graph:addEdge(v, w)
-    local e = graph.Edge.create(v, w)
+function graph:addEdge(v, w, weight)
+    local e = graph.Edge.create(v, w, weight)
     if self.directed then
         self.adjList[e:from()] = e
     else
@@ -73,17 +81,6 @@ function graph:addEdge(v, w)
     end
 
 end
-
-function graph:addWeightedEdge(v, w, weight)
-    local e = graph.Edge.create(v, w)
-    if self.directed then
-        self.adjList[e:from()] = e
-    else
-        self.adjList[e:from()] = e
-        self.adjList[e:to()] = e
-    end
-end
-
 
 return graph
 
