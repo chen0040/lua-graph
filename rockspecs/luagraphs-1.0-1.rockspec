@@ -21,6 +21,6 @@ build = {
    modules = {
       -- Note the required Lua syntax when listing submodules as keys
       ["luagraphs.data.stack"] = "src/data/stack.lua",
-      ["luagraphs.data.list"] = "src/data/list.lua",
+      ["luagraphs.data.graph"] = "src/data/graph.lua",
    }
 }

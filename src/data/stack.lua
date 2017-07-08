@@ -7,7 +7,7 @@
 --
 
 local stack = {}
-stack.__index = sack
+stack.__index = stack
 
 stack.Node = {}
 stack.Node.__index = stack.Node
@@ -26,6 +26,41 @@ function stack.create()
     local s = {};
     setmetatable(s, stack)
 
+    s.first = nil
+    s.N = 0
+
     return s
 end
 
+function stack:push(val)
+    local oldFirst = self.first
+    self.first = stack.Node.create(val)
+    self.first.next = oldFirst
+    self.N = self.N + 1
+end
+
+function stack:size()
+    return self.N
+end
+
+function stack:isEmpty()
+    return self.N == 0
+end
+
+function stack:pop()
+    if self.N == 0 then
+        return nil
+    end
+
+    self.N = self.N - 1
+
+    local oldFirst = self.first
+
+    local val = oldFirst.value
+    self.first = oldFirst.next
+
+    return val
+end
+
+
+return stack
