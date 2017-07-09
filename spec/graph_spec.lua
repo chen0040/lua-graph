@@ -20,6 +20,16 @@ describe("Graph", function()
             g:addEdge(0, 2);
 
             assert.equal(g.V, 6)
+
+            for v = 0, g.V -1 do
+                local adj_v = g:adj(v)
+                local text = ''
+                for i = 0, adj_v:size()-1 do
+                    text = text .. ', ' .. adj_v:get(i):other(v)
+                end
+                print(text)
+            end
+
         end)
     end)
 

@@ -41,10 +41,10 @@ function graph.Edge:either()
 end
 
 function graph.Edge:other(x)
-    if x == v then
-        return w
+    if x == self.v then
+        return self.w
     else
-        return v
+        return self.v
     end
 
 end

@@ -40,7 +40,7 @@ function DepthFirstSearch:dfs(G, v)
         local w = e:other(v)
         if self.marked[w] == false then
             self.pathTo[w] = v
-            dfs(G, w)
+            self:dfs(G, w)
         end
     end
 end
@@ -49,15 +49,16 @@ function DepthFirstSearch:hasPathTo(v)
     return self.marked[v]
 end
 
-function DepthFirstSearch:pathTo(v)
+function DepthFirstSearch:getPathTo(v)
     local stack = require('data.stack')
     local path = stack.create()
     local x = v
     while x ~= self.s do
-        path.push(x)
+        path:push(x)
         x = self.pathTo[x]
     end
-    return stack
+    path:push(self.s)
+    return path
 end
 
 return DepthFirstSearch

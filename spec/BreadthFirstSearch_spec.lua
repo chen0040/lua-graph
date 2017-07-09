@@ -6,7 +6,7 @@
 -- To change this template use File | Settings | File Templates.
 --
 
-describe('DepthFirstSearch()', function()
+describe('BreadthFirstSearch()', function()
     local g = require('data.graph').create(6)
     g:addEdge(0, 5);
     g:addEdge(2, 4);
@@ -16,14 +16,13 @@ describe('DepthFirstSearch()', function()
     g:addEdge(3, 4);
     g:addEdge(3, 5);
     g:addEdge(0, 2);
-    local dfs = require('search.DepthFirstSearch').create()
+    local bfs = require('search.BreadthFirstSearch').create()
     local s = 0
-    dfs:run(g, s)
+    bfs:run(g, s)
 
     for v = 0, g.V-1 do
-        if v ~= s and dfs:hasPathTo(v) then
-            print('has path to ' .. v)
-            local path = dfs:getPathTo(v)
+        if v ~= s and bfs:hasPathTo(v) then
+            local path = bfs:getPathTo(v)
             local pathText = ''
             while path:isEmpty() == false do
                 local x = path:pop()
