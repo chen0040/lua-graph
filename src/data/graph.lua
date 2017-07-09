@@ -60,7 +60,7 @@ function graph.create(V, directed)
     g.V = V
     g.adjList = {}
     for v = 0,V-1 do
-        g.adjList[v] = {}
+        g.adjList[v] = require('data.list').create()
     end
     g.directed = directed
 
@@ -74,10 +74,10 @@ end
 function graph:addEdge(v, w, weight)
     local e = graph.Edge.create(v, w, weight)
     if self.directed then
-        self.adjList[e:from()] = e
+        self.adjList[e:from()]:add(e)
     else
-        self.adjList[e:from()] = e
-        self.adjList[e:to()] = e
+        self.adjList[e:from()]:add(e)
+        self.adjList[e:to()]:add(e)
     end
 
 end

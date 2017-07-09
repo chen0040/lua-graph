@@ -62,5 +62,4 @@ function stack:pop()
     return val
 end
 
-
 return stack

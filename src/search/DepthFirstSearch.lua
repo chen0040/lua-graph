@@ -34,9 +34,10 @@ end
 
 function DepthFirstSearch:dfs(G, v)
     self.marked[v] = true
-    local adj_v = G.adj(v)
-    for _, e in pairs(adj_v) do
-        local w = e.other(v)
+    local adj_v = G:adj(v)
+    for i = 0,adj_v:size()-1 do
+        local e = adj_v:get(i)
+        local w = e:other(v)
         if self.marked[w] == false then
             self.pathTo[w] = v
             dfs(G, w)
@@ -56,6 +57,8 @@ function DepthFirstSearch:pathTo(v)
         path.push(x)
         x = self.pathTo[x]
     end
-    return stack:enumerate()
+    return stack
 end
+
+return DepthFirstSearch
 
