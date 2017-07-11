@@ -23,6 +23,8 @@ build = {
       ["luagraphs.data.stack"] = "src/data/stack.lua",
       ["luagraphs.data.graph"] = "src/data/graph.lua",
       ["luagraphs.data.list"] = "src/data/list.lua",
+      ["luagraphs.data.queue"] = "src/data/queue.lua",
       ["luagraphs.search.DepthFirstSearch"] = "src/search/DepthFirstSearch.lua",
+      ["luagraphs.search.BreadthFirstSearch"] = "src/search/BreadthFirstSearch.lua",
    }
 }
