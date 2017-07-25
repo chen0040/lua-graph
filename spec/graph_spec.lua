@@ -33,6 +33,20 @@ describe("Graph", function()
         end)
     end)
 
+    describe("reverse()", function()
+        it("should reverse the graph", function()
+            local g = require('data.graph').create(5, false)
+            g:addEdge(0, 4)
+            g:addEdge(2, 1)
+
+            local g_reversed = g:reverse()
+            assert.equal(g_reversed:hasEdge(4, 0), true)
+            assert.equal(g_reversed:hasEdge(1, 2), true)
+            assert.equal(g_reversed:hasEdge(0, 4), false)
+
+        end)
+    end)
+
 
 end)
 

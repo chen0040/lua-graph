@@ -82,5 +82,31 @@ function graph:addEdge(v, w, weight)
 
 end
 
+function graph:reverse()
+    local g = graph.create(self.V, self.directed)
+    for v=0,self.V-1 do
+        local adj_v = self:adj(v)
+        for i=0,adj_v:size()-1 do
+            local e = adj_v:get(i)
+            g:addEdge(e:to(), e:from(), e.weight)
+        end
+
+    end
+
+    return g
+
+end
+
+function graph:hasEdge(v, w)
+    local adj_v = self:adj(v)
+    for i=0,adj_v:size()-1 do
+        local e = adj_v:get(i)
+        if e:to() == w then
+            return true
+        end
+    end
+    return false
+end
+
 return graph
 
