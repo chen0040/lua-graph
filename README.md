@@ -21,7 +21,7 @@ The graph algorithms covered:
 # Install
 
 ```bash
-luarocks install lualgorithms
+luarocks install luagraphs
 ```
 
 # Usage

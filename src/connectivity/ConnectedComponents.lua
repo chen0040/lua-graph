@@ -23,6 +23,8 @@ end
 function ConnectedComponents:run(G)
     local V = G.V
 
+    self.marked = {}
+    self.id = {}
     for v = 0, V-1 do
         self.marked[v] = false
         self.id[v] = -1

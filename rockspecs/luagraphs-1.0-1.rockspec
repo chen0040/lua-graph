@@ -26,5 +26,6 @@ build = {
       ["luagraphs.data.queue"] = "src/data/queue.lua",
       ["luagraphs.search.DepthFirstSearch"] = "src/search/DepthFirstSearch.lua",
       ["luagraphs.search.BreadthFirstSearch"] = "src/search/BreadthFirstSearch.lua",
+      ["luagraphs.sort.TopologicalSort"] = "src/sort/TopologicalSort.lua",
    }
 }
