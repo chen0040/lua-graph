@@ -26,3 +26,270 @@ luarocks install luagraphs
 
 # Usage
 
+### Create an undirected unweighted graph
+
+```lua
+local g = require('luagraphs.data.graph').create(6)
+g:addEdge(0, 5) -- bidirectional edge connecting 0 and 5
+g:addEdge(2, 4)
+g:addEdge(2, 3)
+g:addEdge(1, 2)
+g:addEdge(0, 1)
+g:addEdge(3, 4)
+g:addEdge(3, 5)
+g:addEdge(0, 2)
+
+print(g.V) -- return 6
+
+-- code below prints the adjacency list 
+for v = 0, g.V -1 do -- vertex starting at 0 and ending at g.V - 1
+    local adj_v = g:adj(v) -- adjacency list for vertex v
+    local text = ''
+    for i = 0, adj_v:size()-1 do
+        text = text .. ', ' .. adj_v:get(i):other(v)
+    end
+    print(text)
+end
+```
+
+### Create an directed unweighted graph
+
+```lua
+local g = require('luagraphs.data.graph').create(6, true) -- true means it is directed
+g:addEdge(0, 5) -- edge directed from 0 to 5
+g:addEdge(2, 4)
+g:addEdge(2, 3)
+g:addEdge(1, 2)
+g:addEdge(0, 1)
+g:addEdge(3, 4)
+g:addEdge(3, 5)
+g:addEdge(0, 2)
+
+print(g.V) -- return 6
+
+-- code below prints the adjacency list 
+for v = 0, g.V -1 do -- vertex starting at 0 and ending at g.V - 1
+    local adj_v = g:adj(v) -- adjacency list for vertex v
+    local text = ''
+    for i = 0, adj_v:size()-1 do
+        local e = adj_v:get(i)
+        text = text .. ', ' .. e:other(v)
+    end
+    print(text)
+end
+```
+
+### Create an undirected weighted graph
+
+```lua
+local g = require('luagraphs.data.graph').create(6)
+g:addEdge(0, 5, 1.2) -- bidirectional edge with weight equal to 1.2 and connecting between 0 and 5
+g:addEdge(2, 4, 2.2)
+g:addEdge(2, 3, 1.2)
+g:addEdge(1, 2, 1.2)
+g:addEdge(0, 1, 2.2)
+g:addEdge(3, 4, 1.2)
+g:addEdge(3, 5, 2.2)
+g:addEdge(0, 2, 2.2)
+
+print(g.V) -- return 6
+
+-- code below prints the adjacency list 
+for v = 0, g.V -1 do -- vertex starting at 0 and ending at g.V - 1
+    local adj_v = g:adj(v) -- adjacency list for vertex v
+    local text = ''
+    for i = 0, adj_v:size()-1 do
+        local e = adj_v:get(i)
+        text = text .. ', ' .. e:other(v) .. '(' .. e.weight .. ')' 
+    end
+    print(text)
+end
+```
+
+### Create an directed weighted graph
+
+```lua
+local g = require('luagraphs.data.graph').create(6, true) -- true means directed
+g:addEdge(0, 5, 1.2) -- bidirectional edge with weight equal to 1.2 and connecting between 0 and 5
+g:addEdge(2, 4, 2.2)
+g:addEdge(2, 3, 1.2)
+g:addEdge(1, 2, 1.2)
+g:addEdge(0, 1, 2.2)
+g:addEdge(3, 4, 1.2)
+g:addEdge(3, 5, 2.2)
+g:addEdge(0, 2, 2.2)
+
+print(g.V) -- return 6
+
+-- code below prints the adjacency list 
+for v = 0, g.V -1 do -- vertex starting at 0 and ending at g.V - 1
+    local adj_v = g:adj(v) -- adjacency list for vertex v
+    local text = ''
+    for i = 0, adj_v:size()-1 do
+        local e = adj_v:get(i)
+        text = text .. ', ' .. e:other(v) .. '(' .. e.weight .. ')' 
+    end
+    print(text)
+end
+```
+
+### Depth First Search
+
+```lua
+local g = require('luagraphs.data.graph').create(6)
+g:addEdge(0, 5)
+g:addEdge(2, 4)
+g:addEdge(2, 3)
+g:addEdge(1, 2)
+g:addEdge(0, 1)
+g:addEdge(3, 4)
+g:addEdge(3, 5)
+g:addEdge(0, 2)
+local dfs = require('luagraphs.search.DepthFirstSearch').create()
+local s = 0
+dfs:run(g, s)
+
+for v = 0, g.V-1 do
+    if v ~= s and dfs:hasPathTo(v) then
+        print('has path to ' .. v)
+        local path = dfs:getPathTo(v)
+        local pathText = ''
+        while path:isEmpty() == false do
+            local x = path:pop()
+            if pathText == '' then
+                pathText = pathText .. x
+            else
+                pathText = pathText .. ' -> ' .. x
+            end
+        end
+        print(pathText)
+
+    end
+end
+```
+
+### Breadth First Search
+
+```lua
+local g = require('luagraphs.data.graph').create(6) 
+g:addEdge(0, 5)
+g:addEdge(2, 4)
+g:addEdge(2, 3)
+g:addEdge(1, 2)
+g:addEdge(0, 1)
+g:addEdge(3, 4)
+g:addEdge(3, 5)
+g:addEdge(0, 2)
+local bfs = require('luagraphs.search.BreadthFirstSearch').create()
+local s = 0
+bfs:run(g, s)
+
+for v = 0, g.V-1 do
+    if v ~= s and bfs:hasPathTo(v) then
+        local path = bfs:getPathTo(v)
+        local pathText = ''
+        while path:isEmpty() == false do
+            local x = path:pop()
+            if pathText == '' then
+                pathText = pathText .. x
+            else
+                pathText = pathText .. ' -> ' .. x
+            end
+        end
+        print(pathText)
+
+    end
+end
+```
+
+### Connected Components
+
+```lua
+local g = require('luagraphs.data.graph').create(13) -- undirected graph
+g:addEdge(0, 5)
+g:addEdge(4, 3)
+g:addEdge(0, 1)
+g:addEdge(9, 12)
+g:addEdge(6, 4)
+g:addEdge(5, 4)
+g:addEdge(0, 2)
+g:addEdge(11, 12)
+g:addEdge(9,10)
+g:addEdge(0, 6)
+g:addEdge(7, 8)
+g:addEdge(9, 11)
+g:addEdge(5, 3)
+
+local cc = require('connectivity.ConnectedComponents').create()
+cc:run(g)
+
+print('count: ' .. cc.count)
+print(cc.count) -- return 3 connected components
+for v = 0,g.V-1 do
+    print('id[' .. v .. ']: ' .. cc:component(v))
+end
+```
+
+### Strongly Connected Components
+
+```lua
+local graph = require('luagraphs.data.graph').create(13, true) -- directed graph
+graph:addEdge(4, 2)
+graph:addEdge(2, 3)
+graph:addEdge(3, 2)
+graph:addEdge(6, 0)
+graph:addEdge(0, 1)
+graph:addEdge(2, 0)
+graph:addEdge(11, 12)
+graph:addEdge(12, 9)
+graph:addEdge(9, 10)
+graph:addEdge(9, 11)
+graph:addEdge(8, 9)
+graph:addEdge(10, 12)
+graph:addEdge(11, 4)
+graph:addEdge(4, 3)
+graph:addEdge(3, 5)
+graph:addEdge(7, 8)
+graph:addEdge(8, 7)
+graph:addEdge(5, 4)
+graph:addEdge(0, 5)
+graph:addEdge(6, 4)
+graph:addEdge(6, 9)
+graph:addEdge(7, 6)
+
+local scc = require('connectivity.StronglyConnectedComponents').create()
+scc:run(graph)
+print(scc.count) -- return 5 components
+
+for v = 0,graph.V-1 do
+    print('id[' .. v .. ']: ' .. scc:component(v))
+end
+```
+
+### Topological Sort
+
+```lua
+local dag = require('luagraphs.data.graph').create(7, true) -- directed acyclic graph
+
+dag:addEdge(0, 5)
+dag:addEdge(0, 2)
+dag:addEdge(0, 1)
+dag:addEdge(3, 6)
+dag:addEdge(3, 5)
+dag:addEdge(3, 4)
+dag:addEdge(5, 4)
+dag:addEdge(6, 4)
+dag:addEdge(6, 0)
+dag:addEdge(3, 2)
+dag:addEdge(1, 4)
+
+local ts = require('luagraphs.sort.TopologicalSort').create()
+ts:run(dag)
+
+local path = ts:path()
+for i=0, path:size()-1 do
+    print('sort #' .. i .. ': ' .. path:get(i))
+end
+```
+
+
