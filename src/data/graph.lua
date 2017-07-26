@@ -94,7 +94,25 @@ function graph:reverse()
     end
 
     return g
+end
 
+function graph:edges()
+    local list = require('data.list').create()
+
+    for v=0,self.V-1 do
+        local adj_v = self:adj(v)
+        for i=0,adj_v:size()-1 do
+            local e = adj_v:get(i)
+            local w = e:other(v)
+            if self.directed == true or w > v then
+                list:add(e)
+            end
+
+        end
+
+    end
+
+    return list
 end
 
 function graph:hasEdge(v, w)
