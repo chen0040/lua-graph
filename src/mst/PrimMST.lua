@@ -6,19 +6,19 @@
 -- To change this template use File | Settings | File Templates.
 --
 
-local KruskalMST = {}
-KruskalMST.__index = KruskalMST
+local PrimMST = {}
+PrimMST.__index = PrimMST
 
-function KruskalMST.create()
+function PrimMST.create()
     local s = {}
-    setmetatable(s, KruskalMST)
+    setmetatable(s, PrimMST)
 
     s.marked = {}
     s.path = require('data.list').create()
     return s
 end
 
-function KruskalMST:run(G)
+function PrimMST:run(G)
     self.marked = {}
     self.path = require('data.list').create()
     local pq = require('data.MinPQ').create(function(e1, e2)
@@ -36,13 +36,11 @@ function KruskalMST:run(G)
         pq:add(e)
     end
 
-    local uf = require('data.UnionFind').create(G.V)
     while pq:isEmpty() == false and self.path:size() < G.V - 1 do
         local e = pq:delMin()
         local v = e:either()
         local w = e:other(v)
-        if uf:connected(v, w) == false then
-            uf:union(v, w)
+        if self.marked[v] == false or self.marked[w] == false then
             self.path:add(e)
 
             if self.marked[v] == false then
@@ -66,5 +64,5 @@ function KruskalMST:run(G)
     end
 end
 
-return KruskalMST
+return PrimMST
 
