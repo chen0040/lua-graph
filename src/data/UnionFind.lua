@@ -38,8 +38,10 @@ function UnionFind:union(v, w)
     if v_root ~= w_root then
         if self.count[v_root] > self.count[w_root] then
             self.id[w_root] = v_root
+            self.count[v_root] = self.count[w_root] + self.count[v_root]
         else
             self.id[v_root] = w_root
+            self.count[w_root] = self.count[w_root] + self.count[v_root]
         end
     end
 

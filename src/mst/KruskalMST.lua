@@ -17,6 +17,6 @@ function KruskalMST.create()
 end
 
 function KruskalMST:run(G)
-    
+
 end
 
