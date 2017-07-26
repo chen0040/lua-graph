@@ -31,5 +31,7 @@ build = {
       ["luagraphs.sort.TopologicalSort"] = "src/sort/TopologicalSort.lua",
       ["luagraphs.connectivity.ConnectedComponents"] = "src/connectivity/ConnectedComponents",
       ["luagraphs.connectivity.StronglyConnectedComponents"] = "src/connectivity/StronglyConnectedComponents",
+      ["luagraphs.mst.KruskalMST"] = "src/mst/KruskalMST",
+      ["luagraphs.mst.PrimMST"] = "src/mst/PrimMST",
    }
 }

@@ -292,4 +292,69 @@ for i=0, path:size()-1 do
 end
 ```
 
+### Minimum Spanning Tree (Kruskal)
+
+```lua
+local mst = require('luagraphs.mst.KruskalMST').create() 
+local g = require('luagraphs.data.graph').create(8) -- undirected graph with weighted edges
+g:addEdge(0, 7, 0.16) -- 0.16 is the weight of the edge between 0 and 7
+g:addEdge(2, 3, 0.17)
+g:addEdge(1, 7, 0.19)
+g:addEdge(0, 2, 0.26)
+g:addEdge(5, 7, 0.28)
+g:addEdge(1, 3, 0.29)
+g:addEdge(1, 5, 0.32)
+g:addEdge(2, 7, 0.34)
+g:addEdge(4, 5, 0.35)
+g:addEdge(1, 2, 0.36)
+g:addEdge(4, 7, 0.37)
+g:addEdge(0, 4, 0.38)
+g:addEdge(6, 2, 0.4)
+g:addEdge(3, 6, 0.52)
+g:addEdge(6, 0, 0.58)
+g:addEdge(6, 4, 0.93)
+
+mst:run(g)
+
+local path = mst.path
+
+print(path:size()) -- return 7
+for i=0,path:size()-1 do
+    local e = path:get(i)
+    print(e:from() .. ' -> ' .. e:to() .. ' (' .. e.weight .. ')')
+end
+```
+
+### Minimum Spanning Tree (Prim)
+
+```lua
+local mst = require('luagraphs.mst.PrimMST').create()
+local g = require('luagraphs.data.graph').create(8) -- undirected graph with weighted edges
+g:addEdge(0, 7, 0.16) -- 0.16 is the weight of the edge between 0 and 7
+g:addEdge(2, 3, 0.17)
+g:addEdge(1, 7, 0.19)
+g:addEdge(0, 2, 0.26)
+g:addEdge(5, 7, 0.28)
+g:addEdge(1, 3, 0.29)
+g:addEdge(1, 5, 0.32)
+g:addEdge(2, 7, 0.34)
+g:addEdge(4, 5, 0.35)
+g:addEdge(1, 2, 0.36)
+g:addEdge(4, 7, 0.37)
+g:addEdge(0, 4, 0.38)
+g:addEdge(6, 2, 0.4)
+g:addEdge(3, 6, 0.52)
+g:addEdge(6, 0, 0.58)
+g:addEdge(6, 4, 0.93)
+
+mst:run(g)
+
+local path = mst.path
+
+print(path:size()) -- return 7
+for i=0,path:size()-1 do
+    local e = path:get(i)
+    print(e:from() .. ' -> ' .. e:to() .. ' (' .. e.weight .. ')')
+end
+```
 
