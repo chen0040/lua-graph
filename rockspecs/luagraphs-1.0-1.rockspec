@@ -35,5 +35,6 @@ build = {
       ["luagraphs.mst.KruskalMST"] = "src/mst/KruskalMST",
       ["luagraphs.mst.PrimMST"] = "src/mst/PrimMST",
       ["luagraphs.mst.EagerPrimMST"] = "src/mst/EagerPrimMST",
+      ["luagraphs.shortest_paths.Dijkstra"] = "src/shortest_paths/Dijkstra",
    }
 }
