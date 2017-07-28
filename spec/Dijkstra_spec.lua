@@ -34,7 +34,7 @@ describe("Dijkstra", function()
                 print('path from 0 to ' .. v .. ' ( cost: '  .. dijkstra:getPathLength(v) .. ' )')
                 local path = dijkstra:getPathTo(v)
                 for i = 0,path:size()-1 do
-                    print('# from ' .. path:get(i):from() .. ' to ' .. path:get(i):to())
+                    print('# from ' .. path:get(i):from() .. ' to ' .. path:get(i):to() .. ' ( distance: ' .. path:get(i).weight .. ' )')
                 end
             end
         end
