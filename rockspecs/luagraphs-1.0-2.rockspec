@@ -1,8 +1,8 @@
 package = "luagraphs"
-version = "1.0-1"
+version = "1.0-2"
 source = {
    url = "git://github.com/chen0040/lua-graph.git",
-   tag = "v1.0.1",
+   tag = "v1.0.2",
 }
 description = {
    summary = "Lua Graph Algorithms Library",

@@ -12,11 +12,12 @@ The graph algorithms covered:
 * Connected components 
 * Strongly connected components
 * Topological sort
-* Minimum spanning tree
-* Max flow min cut
+* Minimum spanning tree (Kruskal)
+* Minimum spanning tree (Prim)
+* Max flow min cut (Coming Soon)
 * Dijkstra shortest paths
-* Topoogical sort shortest paths
-* Bellman Ford shortest paths
+* Topogical sort shortest paths (Coming Soon)
+* Bellman Ford shortest paths (Coming Soon)
 
 # Install
 
