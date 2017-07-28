@@ -26,6 +26,7 @@ build = {
       ["luagraphs.data.queue"] = "src/data/queue.lua",
       ["luagraphs.data.UnionFind"] = "src/data/UnionFind.lua",
       ["luagraphs.data.MinPQ"] = "src/data/MinPQ.lua",
+      ["luagraphs.data.IndexedMinPQ"] = "src/data/IndexedMinPQ.lua"
       ["luagraphs.search.DepthFirstSearch"] = "src/search/DepthFirstSearch.lua",
       ["luagraphs.search.BreadthFirstSearch"] = "src/search/BreadthFirstSearch.lua",
       ["luagraphs.sort.TopologicalSort"] = "src/sort/TopologicalSort.lua",
@@ -33,5 +34,6 @@ build = {
       ["luagraphs.connectivity.StronglyConnectedComponents"] = "src/connectivity/StronglyConnectedComponents",
       ["luagraphs.mst.KruskalMST"] = "src/mst/KruskalMST",
       ["luagraphs.mst.PrimMST"] = "src/mst/PrimMST",
+      ["luagraphs.mst.EagerPrimMST"] = "src/mst/EagerPrimMST",
    }
 }
