@@ -6,9 +6,9 @@
 -- To change this template use File | Settings | File Templates.
 --
 
-describe('PrimMST', function()
+describe('EagerPrimMST', function()
     it('should find the minimum spanning tree', function()
-        local mst = require('mst.PrimMST').create()
+        local mst = require('mst.EagerPrimMST').create()
         local g = require('data.graph').create(8)
         g:addEdge(0, 7, 0.16)
         g:addEdge(2, 3, 0.17)
@@ -32,7 +32,7 @@ describe('PrimMST', function()
         local path = mst.path
 
         assert.equal(path:size(), g.V-1)
-        print('Lazy Prim')
+        print('Eager Prim')
         for i=0,path:size()-1 do
             local e = path:get(i)
             print(e:from() .. ' -> ' .. e:to() .. ' (' .. e.weight .. ')')

@@ -30,7 +30,7 @@ describe('KruskalMST', function()
         mst:run(g)
 
         local path = mst.path
-
+        print('Kruskal')
         assert.equal(path:size(), g.V-1)
         for i=0,path:size()-1 do
             local e = path:get(i)
