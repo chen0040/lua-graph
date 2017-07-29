@@ -6,7 +6,7 @@
 -- To change this template use File | Settings | File Templates.
 --
 
-describe("Dijkstra", function()
+describe("TopoSortShortestPath", function()
     it('should be able to find all the shortest paths from the source node', function()
         local g = require('data.graph').create(8, true);
 
@@ -27,13 +27,13 @@ describe("Dijkstra", function()
         g:addEdge(7, 5, 6.0)
         g:addEdge(7, 2, 7.0)
 
-        local dijkstra = require('shortest_paths.Dijkstra').create()
-        dijkstra:run(g, 0)
-        print('Dijkstra shortest path')
+        local finder = require('shortest_paths.TopoSortShortestPath').create()
+        finder:run(g, 0)
+        print('topological sort shortest paths');
         for v = 1,g.V-1 do
-            if dijkstra:hasPathTo(v) then
-                print('path from 0 to ' .. v .. ' ( cost: '  .. dijkstra:getPathLength(v) .. ' )')
-                local path = dijkstra:getPathTo(v)
+            if finder:hasPathTo(v) then
+                print('path from 0 to ' .. v .. ' ( cost: '  .. finder:getPathLength(v) .. ' )')
+                local path = finder:getPathTo(v)
                 for i = 0,path:size()-1 do
                     print('# from ' .. path:get(i):from() .. ' to ' .. path:get(i):to() .. ' ( distance: ' .. path:get(i).weight .. ' )')
                 end
