@@ -30,11 +30,12 @@ build = {
       ["luagraphs.search.DepthFirstSearch"] = "src/search/DepthFirstSearch.lua",
       ["luagraphs.search.BreadthFirstSearch"] = "src/search/BreadthFirstSearch.lua",
       ["luagraphs.sort.TopologicalSort"] = "src/sort/TopologicalSort.lua",
-      ["luagraphs.connectivity.ConnectedComponents"] = "src/connectivity/ConnectedComponents",
-      ["luagraphs.connectivity.StronglyConnectedComponents"] = "src/connectivity/StronglyConnectedComponents",
-      ["luagraphs.mst.KruskalMST"] = "src/mst/KruskalMST",
-      ["luagraphs.mst.PrimMST"] = "src/mst/PrimMST",
-      ["luagraphs.mst.EagerPrimMST"] = "src/mst/EagerPrimMST",
-      ["luagraphs.shortest_paths.Dijkstra"] = "src/shortest_paths/Dijkstra",
+      ["luagraphs.connectivity.ConnectedComponents"] = "src/connectivity/ConnectedComponents.lua",
+      ["luagraphs.connectivity.StronglyConnectedComponents"] = "src/connectivity/StronglyConnectedComponents.lua",
+      ["luagraphs.mst.KruskalMST"] = "src/mst/KruskalMST.lua",
+      ["luagraphs.mst.PrimMST"] = "src/mst/PrimMST.lua",
+      ["luagraphs.mst.EagerPrimMST"] = "src/mst/EagerPrimMST.lua",
+      ["luagraphs.shortest_paths.Dijkstra"] = "src/shortest_paths/Dijkstra.lua",
+      ["luagraphs.shortest_paths.TopoSortShortestPath"] = "src/shortest_paths/TopoSortShortestPath.lua",
    }
 }

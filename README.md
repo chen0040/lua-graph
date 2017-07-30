@@ -16,7 +16,7 @@ The graph algorithms covered:
 * Minimum spanning tree (Prim)
 * Max flow min cut (Coming Soon)
 * Dijkstra shortest paths
-* Topogical sort shortest paths (Coming Soon)
+* Topogical sort shortest paths
 * Bellman Ford shortest paths (Coming Soon)
 
 # Install
@@ -420,6 +420,41 @@ for v = 1,g.V-1 do
     if dijkstra:hasPathTo(v) then
         print('path from 0 to ' .. v .. ' ( cost: '  .. dijkstra:getPathLength(v) .. ' )')
         local path = dijkstra:getPathTo(v)
+        for i = 0,path:size()-1 do
+            print('# from ' .. path:get(i):from() .. ' to ' .. path:get(i):to() .. ' ( distance: ' .. path:get(i).weight .. ' )')
+        end
+    end
+end
+```
+
+### Shortest Paths (Topological Sort)
+
+```lua
+local g = require('luagraphs.data.graph').create(8, true); -- directed weighted graph
+
+g:addEdge(0, 1, 5.0) -- edge from 0 to 1 is 5.0 in distance
+g:addEdge(0, 4, 9.0)
+g:addEdge(0, 7, 8.0)
+g:addEdge(1, 2, 12.0)
+g:addEdge(1, 3, 15.0)
+g:addEdge(1, 7, 4.0)
+g:addEdge(2, 3, 3.0)
+g:addEdge(2, 6, 11.0)
+g:addEdge(3, 6, 9.0)
+g:addEdge(4, 5, 5.0)
+g:addEdge(4, 6, 20.0)
+g:addEdge(4, 7, 5.0)
+g:addEdge(5, 2, 1.0)
+g:addEdge(5, 6, 13.0)
+g:addEdge(7, 5, 6.0)
+g:addEdge(7, 2, 7.0)
+
+local finder = require('luagraphs.shortest_paths.Dijkstra').create()
+finder:run(g, 0) -- 0 is the source node in the path search
+for v = 1,g.V-1 do
+    if finder:hasPathTo(v) then
+        print('path from 0 to ' .. v .. ' ( cost: '  .. finder:getPathLength(v) .. ' )')
+        local path = finder:getPathTo(v)
         for i = 0,path:size()-1 do
             print('# from ' .. path:get(i):from() .. ' to ' .. path:get(i):to() .. ' ( distance: ' .. path:get(i).weight .. ' )')
         end
