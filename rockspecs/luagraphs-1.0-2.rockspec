@@ -37,5 +37,6 @@ build = {
       ["luagraphs.mst.EagerPrimMST"] = "src/mst/EagerPrimMST.lua",
       ["luagraphs.shortest_paths.Dijkstra"] = "src/shortest_paths/Dijkstra.lua",
       ["luagraphs.shortest_paths.TopoSortShortestPath"] = "src/shortest_paths/TopoSortShortestPath.lua",
+      ["luagraphs.shortest_paths.BellmanFord"] = "src/shortest_paths/BellmanFord.lua",
    }
 }
