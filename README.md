@@ -14,10 +14,10 @@ The graph algorithms covered:
 * Topological sort
 * Minimum spanning tree (Kruskal)
 * Minimum spanning tree (Prim)
-* Max flow min cut (Coming Soon)
+* Max flow min cut
 * Dijkstra shortest paths
 * Topogical sort shortest paths
-* Bellman Ford shortest paths (Coming Soon)
+* Bellman Ford shortest paths
 
 # Install
 
@@ -459,5 +459,39 @@ for v = 1,g.V-1 do
             print('# from ' .. path:get(i):from() .. ' to ' .. path:get(i):to() .. ' ( distance: ' .. path:get(i).weight .. ' )')
         end
     end
+end
+```
+
+### MinCut-MaxFlow (Ford Fulkerson implementation)
+
+```lua
+local g = require('luagraphs.data.network').FlowNetwork.create(8);
+
+g:addEdge(0, 1, 10); -- capacity from vertex 0 to vertex 1 is 10
+g:addEdge(0, 2, 5);
+g:addEdge(0, 3, 15);
+g:addEdge(1, 4, 9);
+g:addEdge(1, 5, 15);
+g:addEdge(1, 2, 4);
+g:addEdge(2, 5, 8);
+g:addEdge(2, 3, 4);
+g:addEdge(3, 6, 16);
+g:addEdge(4, 5, 15);
+g:addEdge(4, 7, 10);
+g:addEdge(5, 7, 10);
+g:addEdge(5, 6, 15);
+g:addEdge(6, 2, 6);
+g:addEdge(6, 7, 10);
+
+local method = require('luagraphs.flow.FordFulkerson').create()
+local maxFlow = method:run(g, 0, 7)
+print('FordFulkerson max flow: ' .. maxFlow)
+
+
+local minCuts = method:minCuts()
+
+for i = 0,minCuts:size()-1 do
+    local e =minCuts:get(i)
+    print('min cut: ' .. e:toString())
 end
 ```
