@@ -40,8 +40,8 @@ end
 
 function network.FlowNetwork:addEdge(v, w, capacity)
     local e = network.FlowEdge.create(v, w, capacity)
-    self.adjList[e.v] = e
-    self.adjList[e.w] = e
+    self.adjList[e.v]:add(e)
+    self.adjList[e.w]:add(e)
 end
 
 function network.FlowNetwork:adj(v)
@@ -56,7 +56,21 @@ function network.FlowEdge:residualCapacityTo(x)
     end
 end
 
-function network.FlowEdge:addFlowTo(x, inc)
+function network.FlowEdge:other(x)
+    if x == self.v then
+        return self.w
+    else
+        return self.v
+    end
+
+
+end
+
+function network.FlowEdge:toString()
+    return self.v .. ' to ' .. self.w .. ' with capacity ' .. self.capacity
+end
+
+function network.FlowEdge:addResidualFlowTo(x, inc)
     if x == self.v then
         self.flow = self.flow - inc
     else

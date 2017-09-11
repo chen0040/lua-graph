@@ -22,6 +22,7 @@ build = {
       -- Note the required Lua syntax when listing submodules as keys
       ["luagraphs.data.stack"] = "src/data/stack.lua",
       ["luagraphs.data.graph"] = "src/data/graph.lua",
+      ["luagraphs.data.network"] = "src/data/network.lua",
       ["luagraphs.data.list"] = "src/data/list.lua",
       ["luagraphs.data.queue"] = "src/data/queue.lua",
       ["luagraphs.data.UnionFind"] = "src/data/UnionFind.lua",
@@ -38,5 +39,6 @@ build = {
       ["luagraphs.shortest_paths.Dijkstra"] = "src/shortest_paths/Dijkstra.lua",
       ["luagraphs.shortest_paths.TopoSortShortestPath"] = "src/shortest_paths/TopoSortShortestPath.lua",
       ["luagraphs.shortest_paths.BellmanFord"] = "src/shortest_paths/BellmanFord.lua",
+      ["luagraphs.flow.FordFulkerson"] = "src/flow/FordFulkerson.lua",
    }
 }
