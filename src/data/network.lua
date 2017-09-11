@@ -7,7 +7,7 @@
 --
 
 local network = {}
-network.__indeex = network
+network.__index = network
 
 network.FlowEdge = {}
 network.FlowEdge.__index = network.FlowEdge
@@ -41,10 +41,28 @@ end
 function network.FlowNetwork:addEdge(v, w, capacity)
     local e = network.FlowEdge.create(v, w, capacity)
     self.adjList[e.v] = e
+    self.adjList[e.w] = e
 end
 
 function network.FlowNetwork:adj(v)
     return self.adjList[v]
+end
+
+function network.FlowEdge:residualCapacityTo(x)
+    if x == self.v then
+        return self.flow
+    else
+        return self.capacity - self.flow
+    end
+end
+
+function network.FlowEdge:addFlowTo(x, inc)
+    if x == self.v then
+        self.flow = self.flow - inc
+    else
+        self.flow = self.flow + inc
+    end
+
 end
 
 return network
