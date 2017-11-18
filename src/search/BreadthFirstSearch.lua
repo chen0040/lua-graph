@@ -20,9 +20,9 @@ end
 
 function BreadthFirstSearch:run(G, s)
     self.s = s
-    local V = G.V
 
-    for v = 0, V-1 do
+    for i = 0, G:vertexCount()-1 do
+        local v = G:vertexAt(i)
         self.marked[v] = false
         self.pathTo[v] = -1
     end

@@ -21,12 +21,11 @@ function DepthFirstSearch.create()
 end
 
 function DepthFirstSearch:run(G, s)
-    local V = G.V
-
     self.s = s
-    for i = 0,V-1 do
-        self.marked[i] = false
-        self.pathTo[i] = -1
+    for i = 0,G:vertexCount()-1 do
+        local v = G:vertexAt(i)
+        self.marked[v] = false
+        self.pathTo[v] = -1
     end
 
     self:dfs(G, s)

@@ -28,7 +28,8 @@ describe('ConnectedComponents()', function()
 
         print('count: ' .. cc.count)
         assert.equal(cc.count, 3)
-        for v = 0,g.V-1 do
+        for i = 0,g:vertexCount()-1 do
+            local v = g:vertexAt(i)
             print('id[' .. v .. ']: ' .. cc:component(v))
         end
 

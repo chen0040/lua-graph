@@ -54,7 +54,8 @@ end
 function FordFulkerson:hasPath()
     self.edgeTo = {}
     self.marked = {}
-    for v = 0,self.network.V-1 do
+    for i = 0,self.network:vertexCount()-1 do
+        local v = self.network:vertexAt(i)
         self.marked[v] = false
     end
 
@@ -85,7 +86,8 @@ end
 
 function FordFulkerson:minCuts()
     local result = require('data.list').create()
-    for v = 0,self.network.V-1 do
+    for i = 0,self.network:vertexCount()-1 do
+        local v = self.network:vertexAt(i)
         local adj_v = self.network:adj(v)
         for i = 0,adj_v:size()-1 do
             local e = adj_v:get(i)

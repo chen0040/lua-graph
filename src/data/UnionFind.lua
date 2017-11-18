@@ -22,6 +22,20 @@ function UnionFind.create(V)
     return s
 end
 
+function UnionFind.createFromVertexList(vertices)
+    local s = {}
+    setmetatable(s, UnionFind)
+
+    s.id = {}
+    s.count = {}
+    for i=0, vertices:size()-1 do
+        local v = vertices:get(i)
+        s.id[v] = v
+        s.count[v] = 1
+    end
+    return s
+end
+
 function UnionFind:root(v)
     local x = v
     while self.id[x] ~= x do

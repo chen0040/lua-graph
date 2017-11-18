@@ -31,7 +31,7 @@ describe('KruskalMST', function()
 
         local path = mst.path
         print('Kruskal')
-        assert.equal(path:size(), g.V-1)
+        assert.equal(path:size(), g:vertexCount()-1)
         for i=0,path:size()-1 do
             local e = path:get(i)
             print(e:from() .. ' -> ' .. e:to() .. ' (' .. e.weight .. ')')

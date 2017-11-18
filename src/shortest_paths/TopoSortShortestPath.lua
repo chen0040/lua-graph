@@ -25,8 +25,8 @@ function TopoSortShortestPath:run(G, s)
     self.cost = {}
     self.source = s
 
-    local V = G.V
-    for v = 0, V-1 do
+    for i = 0, G:vertexCount()-1 do
+        local v = G:vertexAt(i)
         self.edgeTo[v] = -1
         self.cost[v] = TopoSortShortestPath.MAX_VALUE
     end

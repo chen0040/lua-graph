@@ -25,18 +25,20 @@ function PrimMST:run(G)
         return e1.weight - e2.weight
     end)
 
-    for v = 0, G.V-1 do
+    for i = 0, G:vertexCount()-1 do
+        local v = G:vertexAt(i)
         self.marked[v] = false
     end
 
-    local adj_s = G:adj(0)
-    self.marked[0] = true
+    local source = G:vertexAt(0)
+    local adj_s = G:adj(source)
+    self.marked[source] = true
     for i = 0, adj_s:size()-1 do
         local e = adj_s:get(i)
         pq:add(e)
     end
 
-    while pq:isEmpty() == false and self.path:size() < G.V - 1 do
+    while pq:isEmpty() == false and self.path:size() < G:vertexCount() - 1 do
         local e = pq:delMin()
         local v = e:either()
         local w = e:other(v)

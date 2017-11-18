@@ -23,8 +23,8 @@ function EagerPrimMST:run(G)
     self.path = require('data.list').create()
     self.marked = {}
 
-    local V = G.V
-    for v = 0, V-1 do
+    for i = 0, G:vertexCount()-1 do
+        local v = G:vertexAt(i)
         self.marked[v] = false
     end
 

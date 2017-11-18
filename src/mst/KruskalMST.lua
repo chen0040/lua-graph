@@ -25,7 +25,8 @@ function KruskalMST:run(G)
         return e1.weight - e2.weight
     end)
 
-    for v = 0, G.V-1 do
+    for i = 0, G:vertexCount()-1 do
+        local v = G:vertexAt(i)
         self.marked[v] = false
     end
 
@@ -35,8 +36,8 @@ function KruskalMST:run(G)
         pq:add(e)
     end
 
-    local uf = require('data.UnionFind').create(G.V)
-    while pq:isEmpty() == false and self.path:size() < G.V - 1 do
+    local uf = require('data.UnionFind').createFromVertexList(G:vertices())
+    while pq:isEmpty() == false and self.path:size() < G:vertexCount() - 1 do
         local e = pq:delMin()
         local v = e:either()
         local w = e:other(v)

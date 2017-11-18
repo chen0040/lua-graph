@@ -27,11 +27,13 @@ describe("TopoSortShortestPath", function()
         g:addEdge(7, 5, 6.0)
         g:addEdge(7, 2, 7.0)
 
+        local source = 0
         local finder = require('shortest_paths.TopoSortShortestPath').create()
-        finder:run(g, 0)
+        finder:run(g, source)
         print('topological sort shortest paths');
-        for v = 1,g.V-1 do
-            if finder:hasPathTo(v) then
+        for i = 0,g:vertexCount()-1 do
+            local v = g:vertexAt(i)
+            if v ~= source and finder:hasPathTo(v) then
                 print('path from 0 to ' .. v .. ' ( cost: '  .. finder:getPathLength(v) .. ' )')
                 local path = finder:getPathTo(v)
                 for i = 0,path:size()-1 do

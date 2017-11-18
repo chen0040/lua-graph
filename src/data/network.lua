@@ -30,12 +30,46 @@ function network.FlowNetwork.create(V)
     local s = {}
     setmetatable(s, network.FlowNetwork)
 
-    s.V = V
+    s.vertexList = require('data.list').create()
     s.adjList = {}
     for v = 0,V-1 do
+        s.vertexList:add(v)
         s.adjList[v] = require('data.list').create()
     end
     return s
+end
+
+function network.FlowNetwork:vertexCount()
+    return self.vertexList:size()
+end
+
+function network.FlowNetwork:vertexAt(i)
+    return self.vertexList:get(i)
+end
+
+function network.FlowNetwork:addVertexIfNotExists(v)
+    if self.vertexList:contains(v) then
+        return false
+    else
+        self.vertexList:add(v)
+        self.adjList[v] = require('data.list').create()
+        return true
+    end
+end
+
+function network.FlowNetwork:removeVertex(v)
+    if self.vertexList:contains(v) then
+        self.vertexList:remove(v)
+        self.adjList[v] = nil
+    end
+end
+
+function network.FlowNetwork:containsVertex(v)
+    return self.vertexList:contains(v)
+end
+
+function network.FlowNetwork:vertices()
+    return self.vertexList
 end
 
 function network.FlowNetwork:addEdge(v, w, capacity)

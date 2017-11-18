@@ -20,13 +20,14 @@ function TopologicalSort.create()
 end
 
 function TopologicalSort:run(G)
-    local V = G.V
 
-    for v = 0,V-1 do
+    for i = 0,G:vertexCount()-1 do
+        local v = G:vertexAt(i)
         self.marked[v] = false
     end
 
-    for v = 0, V-1 do
+    for i = 0, G:vertexCount()-1 do
+        local v = G:vertexAt(i)
         if self.marked[v] == false then
             self:dfs(G, v)
         end

@@ -36,7 +36,8 @@ describe('StronglyConnectedComponents', function()
         scc:run(graph)
         assert.equal(scc.count, 5)
 
-        for v = 0,graph.V-1 do
+        for i = 0,graph:vertexCount()-1 do
+            local v = graph:vertexAt(i)
             print('id[' .. v .. ']: ' .. scc:component(v))
         end
 

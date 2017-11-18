@@ -31,7 +31,7 @@ describe('PrimMST', function()
 
         local path = mst.path
 
-        assert.equal(path:size(), g.V-1)
+        assert.equal(path:size(), g:vertexCount()-1)
         print('Lazy Prim')
         for i=0,path:size()-1 do
             local e = path:get(i)

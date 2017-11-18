@@ -19,9 +19,10 @@ describe("Graph", function()
             g:addEdge(3, 5);
             g:addEdge(0, 2);
 
-            assert.equal(g.V, 6)
+            assert.equal(g:vertexCount(), 6)
 
-            for v = 0, g.V -1 do
+            for i = 0, g:vertexCount() -1 do
+                local v = g:vertexAt(i)
                 local adj_v = g:adj(v)
                 local text = ''
                 for i = 0, adj_v:size()-1 do
@@ -30,6 +31,79 @@ describe("Graph", function()
                 print(text)
             end
 
+        end)
+    end)
+
+    describe("Undirected Unweighted Graph With Vertices added later", function()
+        it("should automatically expand the graph", function()
+            local g = require('data.graph').create(6);
+            g:addEdge(0, 5);
+            g:addEdge(2, 4);
+            g:addEdge(2, 3);
+            g:addEdge(1, 2);
+            g:addEdge(0, 1);
+            g:addEdge(3, 4);
+            g:addEdge(3, 5);
+            g:addEdge(0, 2);
+
+            g:addEdge(-1, 10)
+            g:addEdge(9, 2)
+            g:addEdge(-1, 0)
+
+            assert.equal(g:containsVertex(9), true)
+            assert.equal(g:containsVertex(-1), true)
+            assert.equal(g:containsVertex(8), false)
+
+            assert.equal(g:vertexCount(), 9)
+
+            for i = 0, g:vertexCount() -1 do
+                local v = g:vertexAt(i)
+                local adj_v = g:adj(v)
+                local text = ''
+                for i = 0, adj_v:size()-1 do
+                    text = text .. ', ' .. adj_v:get(i):other(v)
+                end
+                print(text)
+            end
+
+        end)
+    end)
+
+    describe('Dynamically expand and shrink a graph', function()
+        it("should dynamically adjust teh graph size", function()
+            local vertices = require('luagraphs.data.list').create()
+            vertices:add(3)
+            vertices:add(5)
+            vertices:add(10)
+
+            local g = require('luagraphs.data.graph').createFromVertexList()
+
+            assert.equal(g:vertexCount(), 3)
+
+            g:addVertexIfNotExists(4)
+            g:addVertexIfNotExists(5)
+
+            assert.equal(g:vertexCount(), 4)
+
+            g:addEdge(0, 5) -- add a new vertex 0 and a bidirectional edge connecting 0 and 5
+
+            assert.equal(g:vertexCount(), 5)
+
+            g:removeVertex(10)
+
+            assert.equal(g:vertexCount(), 4)
+
+
+            -- code below prints the adjacency list
+            for k = 0, g:vertexCount() -1 do -- iterate through all the vertices in g
+                local v = g:vertexAt(k)
+                local adj_v = g:adj(v) -- adjacency list for vertex v
+                local text = ''
+                for i = 0, adj_v:size()-1 do
+                    text = text .. ', ' .. adj_v:get(i):other(v)
+                end
+                print(text)
+            end
         end)
     end)
 

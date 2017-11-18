@@ -40,10 +40,88 @@ g:addEdge(3, 4)
 g:addEdge(3, 5)
 g:addEdge(0, 2)
 
-print(g.V) -- return 6
+print(g:vertexCount()) -- return 6
 
 -- code below prints the adjacency list 
-for v = 0, g.V -1 do -- vertex starting at 0 and ending at g.V - 1
+for k = 0, g:vertexCount() -1 do -- iterate through all the vertices in g
+    local v = g:vertexAt(k)
+    local adj_v = g:adj(v) -- adjacency list for vertex v
+    local text = ''
+    for i = 0, adj_v:size()-1 do
+        text = text .. ', ' .. adj_v:get(i):other(v)
+    end
+    print(text)
+end
+```
+
+### Create an undirected unweighted graph and add / remove vertices later
+
+```lua
+local g = require('luagraphs.data.graph').create(6)
+g:addEdge(0, 5) -- bidirectional edge connecting 0 and 5
+g:addEdge(2, 4)
+g:addEdge(2, 3)
+g:addEdge(1, 2)
+g:addEdge(0, 1)
+g:addEdge(3, 4)
+g:addEdge(3, 5)
+g:addEdge(0, 2)
+
+-- expand the graph by another 3 vertices: -1, 9, and 10
+-- if you want to add a vertex without adding an edge, can just call g:addVertexIfNotExists(vertexId) instead
+g:addEdge(-1, 10) 
+g:addEdge(9, 2)
+g:addEdge(-1, 0)
+
+print(g:containsVertex(9)) -- return true
+print(g:containsVertex(-1)) -- return true
+print(g:containsVertex(8)) -- return false
+
+print(g:vertexCount()) -- return 9
+
+-- to remove a vertex, can just call g:removeVertex(vertexId)
+
+-- code below prints the adjacency list 
+for k = 0, g:vertexCount() -1 do -- iterate through all the vertices in g
+    local v = g:vertexAt(k)
+    local adj_v = g:adj(v) -- adjacency list for vertex v
+    local text = ''
+    for i = 0, adj_v:size()-1 do
+        text = text .. ', ' .. adj_v:get(i):other(v)
+    end
+    print(text)
+end
+```
+
+### Create an undirected unweighted graph from a list of vertices and expand or shrink it
+
+```lua
+local vertices = require('luagraphs.data.list').create()
+vertices:add(3)
+vertices:add(5)
+vertices:add(10)
+
+local g = require('luagraphs.data.graph').createFromVertexList()
+
+print(g:vertexCount()) -- return 3
+
+g:addVertexIfNotExists(4)
+g:addVertexIfNotExists(5)
+
+print(g:vertexCount()) -- return 4
+
+g:addEdge(0, 5) -- add a new vertex 0 and a bidirectional edge connecting 0 and 5
+
+print(g:vertexCount()) -- return 5
+
+g:removeVertex(10)
+
+print(g:vertexCount()) -- return 4
+
+
+-- code below prints the adjacency list 
+for k = 0, g:vertexCount() -1 do -- iterate through all the vertices in g
+    local v = g:vertexAt(k)
     local adj_v = g:adj(v) -- adjacency list for vertex v
     local text = ''
     for i = 0, adj_v:size()-1 do
@@ -66,10 +144,11 @@ g:addEdge(3, 4)
 g:addEdge(3, 5)
 g:addEdge(0, 2)
 
-print(g.V) -- return 6
+print(g:vertexCount()) -- return 6
 
 -- code below prints the adjacency list 
-for v = 0, g.V -1 do -- vertex starting at 0 and ending at g.V - 1
+for k = 0, g:vertexCount() -1 do -- iterate through all vertices in g
+    local v = g:vertexAt(k)
     local adj_v = g:adj(v) -- adjacency list for vertex v
     local text = ''
     for i = 0, adj_v:size()-1 do
@@ -93,10 +172,11 @@ g:addEdge(3, 4, 1.2)
 g:addEdge(3, 5, 2.2)
 g:addEdge(0, 2, 2.2)
 
-print(g.V) -- return 6
+print(g:vertexCount()) -- return 6
 
 -- code below prints the adjacency list 
-for v = 0, g.V -1 do -- vertex starting at 0 and ending at g.V - 1
+for k = 0, g:vertexCount() -1 do -- iterate through all vertices in g
+    local v = g:vertexAt(k)
     local adj_v = g:adj(v) -- adjacency list for vertex v
     local text = ''
     for i = 0, adj_v:size()-1 do
@@ -120,10 +200,11 @@ g:addEdge(3, 4, 1.2)
 g:addEdge(3, 5, 2.2)
 g:addEdge(0, 2, 2.2)
 
-print(g.V) -- return 6
+print(g:vertexCount()) -- return 6
 
 -- code below prints the adjacency list 
-for v = 0, g.V -1 do -- vertex starting at 0 and ending at g.V - 1
+for k = 0, g:vertexCount() -1 do -- iterate through all vertices in g
+    local v = g:vertexAt(k)
     local adj_v = g:adj(v) -- adjacency list for vertex v
     local text = ''
     for i = 0, adj_v:size()-1 do
@@ -150,7 +231,8 @@ local dfs = require('luagraphs.search.DepthFirstSearch').create()
 local s = 0
 dfs:run(g, s)
 
-for v = 0, g.V-1 do
+for k = 0, g:vertexCount()-1 do
+    local v = g:vertexAt(k)
     if v ~= s and dfs:hasPathTo(v) then
         print('has path to ' .. v)
         local path = dfs:getPathTo(v)
@@ -185,7 +267,7 @@ local bfs = require('luagraphs.search.BreadthFirstSearch').create()
 local s = 0
 bfs:run(g, s)
 
-for v = 0, g.V-1 do
+for v = 0, g:vertexCount()-1 do
     if v ~= s and bfs:hasPathTo(v) then
         local path = bfs:getPathTo(v)
         local pathText = ''
@@ -226,7 +308,7 @@ cc:run(g)
 
 print('count: ' .. cc.count)
 print(cc.count) -- return 3 connected components
-for v = 0,g.V-1 do
+for v = 0,g:vertexCount()-1 do
     print('id[' .. v .. ']: ' .. cc:component(v))
 end
 ```
@@ -262,7 +344,7 @@ local scc = require('connectivity.StronglyConnectedComponents').create()
 scc:run(graph)
 print(scc.count) -- return 5 components
 
-for v = 0,graph.V-1 do
+for v = 0,graph:vertexCount()-1 do
     print('id[' .. v .. ']: ' .. scc:component(v))
 end
 ```
@@ -416,7 +498,7 @@ g:addEdge(7, 2, 7.0)
 
 local dijkstra = require('luagraphs.shortest_paths.Dijkstra').create()
 dijkstra:run(g, 0) -- 0 is the source node in the path search
-for v = 1,g.V-1 do
+for v = 1,g:vertexCount()-1 do
     if dijkstra:hasPathTo(v) then
         print('path from 0 to ' .. v .. ' ( cost: '  .. dijkstra:getPathLength(v) .. ' )')
         local path = dijkstra:getPathTo(v)
@@ -451,7 +533,7 @@ g:addEdge(7, 2, 7.0)
 
 local finder = require('luagraphs.shortest_paths.Dijkstra').create()
 finder:run(g, 0) -- 0 is the source node in the path search
-for v = 1,g.V-1 do
+for v = 1,g:vertexCount()-1 do
     if finder:hasPathTo(v) then
         print('path from 0 to ' .. v .. ' ( cost: '  .. finder:getPathLength(v) .. ' )')
         local path = finder:getPathTo(v)

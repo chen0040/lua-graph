@@ -20,7 +20,8 @@ describe('BreadthFirstSearch()', function()
     local s = 0
     bfs:run(g, s)
 
-    for v = 0, g.V-1 do
+    for i = 0, g:vertexCount()-1 do
+        local v = g:vertexAt(i)
         if v ~= s and bfs:hasPathTo(v) then
             local path = bfs:getPathTo(v)
             local pathText = ''

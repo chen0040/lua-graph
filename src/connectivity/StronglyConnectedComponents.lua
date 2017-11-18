@@ -20,12 +20,11 @@ function StronglyConnectedComponents.create()
 end
 
 function StronglyConnectedComponents:run(G)
-    local V = G.V
-
     self.marked = {}
     self.id = {}
     self.count = 0
-    for v = 0,V-1 do
+    for i = 0,G:vertexCount()-1 do
+        local v = G:vertexAt(i)
         self.marked[v] = false
         self.id[v] = -1
     end

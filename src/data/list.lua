@@ -90,6 +90,10 @@ function list.ArrayList:indexOf(value)
     return -1
 end
 
+function list.ArrayList:contains(value)
+    return self:indexOf(value) ~= -1
+end
+
 function list.ArrayList:remove(value)
     local index = self:indexOf(value)
     self:removeAt(index)

@@ -27,8 +27,8 @@ function Dijkstra:run(G, s)
     self.marked = {}
     self.source = s
 
-    local V = G.V
-    for v = 0, V-1 do
+    for i = 0, G:vertexCount()-1 do
+        local v = G:vertexAt(i)
         self.marked[v] = false
         self.edgeTo[v] = -1
         self.cost[v] = Dijkstra.MAX_VALUE

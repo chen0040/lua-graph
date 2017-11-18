@@ -27,15 +27,17 @@ function BellmanFord:run(g, s)
     self.costs = {}
     self.negativeCycle = false
 
-    for v = 0, g.V-1 do
+    for i = 0, g:vertexCount()-1 do
+        local v = g:vertexAt(i)
         self.edgeTo[v] = -1
         self.costs[v] = BellmanFord.MAX_VALUE
     end
 
     self.costs[s] = 0
 
-    for i = 0,g.V-1 do
-        for v = 0, g.V-1 do
+    for i = 0,g:vertexCount()-1 do
+        for k = 0, g:vertexCount()-1 do
+            local v = g:vertexAt(k)
             local adj_v = g:adj(v)
             for j = 0, adj_v:size()-1 do
                 local e = adj_v:get(j)
@@ -44,7 +46,8 @@ function BellmanFord:run(g, s)
         end
     end
 
-    for v = 0, g.V-1 do
+    for i = 0, g:vertexCount()-1 do
+        local v = g:vertexAt(i)
         local adj_v = g:adj(v)
         for j = 0, adj_v:size()-1 do
             local e = adj_v:get(j)
