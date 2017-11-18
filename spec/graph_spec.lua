@@ -71,12 +71,12 @@ describe("Graph", function()
 
     describe('Dynamically expand and shrink a graph', function()
         it("should dynamically adjust teh graph size", function()
-            local vertices = require('luagraphs.data.list').create()
+            local vertices = require('data.list').create()
             vertices:add(3)
             vertices:add(5)
             vertices:add(10)
 
-            local g = require('luagraphs.data.graph').createFromVertexList()
+            local g = require('data.graph').createFromVertexList(vertices)
 
             assert.equal(g:vertexCount(), 3)
 

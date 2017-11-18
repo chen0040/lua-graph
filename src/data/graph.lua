@@ -155,7 +155,7 @@ function graph:reverse()
 end
 
 function graph:vertexAt(i)
-    return self:adjList:get(i)
+    return self.vertexList:get(i)
 end
 
 function graph:edges()

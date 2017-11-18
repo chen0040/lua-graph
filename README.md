@@ -101,7 +101,7 @@ vertices:add(3)
 vertices:add(5)
 vertices:add(10)
 
-local g = require('luagraphs.data.graph').createFromVertexList()
+local g = require('luagraphs.data.graph').createFromVertexList(vertices)
 
 print(g:vertexCount()) -- return 3
 
