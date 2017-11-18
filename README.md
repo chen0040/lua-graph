@@ -276,7 +276,8 @@ local bfs = require('luagraphs.search.BreadthFirstSearch').create()
 local s = 0
 bfs:run(g, s)
 
-for v = 0, g:vertexCount()-1 do
+for k = 0, g:vertexCount()-1 do
+    local v = g:vertexAt(k)
     if v ~= s and bfs:hasPathTo(v) then
         local path = bfs:getPathTo(v)
         local pathText = ''
@@ -317,7 +318,8 @@ cc:run(g)
 
 print('count: ' .. cc.count)
 print(cc.count) -- return 3 connected components
-for v = 0,g:vertexCount()-1 do
+for k = 0,g:vertexCount()-1 do
+    local v = g:vertexAt(k)
     print('id[' .. v .. ']: ' .. cc:component(v))
 end
 ```
@@ -353,7 +355,8 @@ local scc = require('connectivity.StronglyConnectedComponents').create()
 scc:run(graph)
 print(scc.count) -- return 5 components
 
-for v = 0,graph:vertexCount()-1 do
+for k = 0,graph:vertexCount()-1 do
+    local v = graph:vertexAt(k)
     print('id[' .. v .. ']: ' .. scc:component(v))
 end
 ```
@@ -505,10 +508,12 @@ g:addEdge(5, 6, 13.0)
 g:addEdge(7, 5, 6.0)
 g:addEdge(7, 2, 7.0)
 
+local source = 0
 local dijkstra = require('luagraphs.shortest_paths.Dijkstra').create()
-dijkstra:run(g, 0) -- 0 is the source node in the path search
-for v = 1,g:vertexCount()-1 do
-    if dijkstra:hasPathTo(v) then
+dijkstra:run(g, source) -- 0 is the id of the source node in the path search
+for k = 0,g:vertexCount()-1 do
+    local v = g:vertexAt(k)
+    if v ~= source and dijkstra:hasPathTo(v) then
         print('path from 0 to ' .. v .. ' ( cost: '  .. dijkstra:getPathLength(v) .. ' )')
         local path = dijkstra:getPathTo(v)
         for i = 0,path:size()-1 do
@@ -540,10 +545,12 @@ g:addEdge(5, 6, 13.0)
 g:addEdge(7, 5, 6.0)
 g:addEdge(7, 2, 7.0)
 
+local source = 0
 local finder = require('luagraphs.shortest_paths.Dijkstra').create()
-finder:run(g, 0) -- 0 is the source node in the path search
-for v = 1,g:vertexCount()-1 do
-    if finder:hasPathTo(v) then
+finder:run(g, source) -- 0 is the source node in the path search
+for k = 0,g:vertexCount()-1 do
+    local v= g:vertexAt(k)
+    if v ~= source and finder:hasPathTo(v) then
         print('path from 0 to ' .. v .. ' ( cost: '  .. finder:getPathLength(v) .. ' )')
         local path = finder:getPathTo(v)
         for i = 0,path:size()-1 do
