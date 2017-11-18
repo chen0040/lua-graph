@@ -112,7 +112,15 @@ function graph:removeVertex(v)
         for i=0,self.vertexList:size()-1 do
             local w = self.vertexList:get(i)
             local adj_w = self.adjList[w]
-            adj_w:remove(v)
+            for k = 0,adj_w:size()-1 do
+                local e = adj_w:get(k)
+                if e:other(w) == v then
+                    adj_w:removeAt(k)
+                    break
+                end
+
+            end
+
         end
 
     end
