@@ -21,9 +21,9 @@ The graph algorithms covered:
 
 # Notes
 
-For developers who have been library 1.0.2, the main changes are:
+For developers who have been using library 1.0.2, the main changes are:
   
-* graph.V is removed and replaced with graph:vertexCount() and graph:vertexAt(index) method for iterating all vertices: this change was introduced so that graph vertices do not need to start with vertex 0 and do not need to be consecutive.
+* graph.V is removed and replaced with graph:vertexCount() and graph:vertexAt(index) method for iterating all vertices: this change was introduced so that graph vertices do not need to start with vertex 0 and do not need to be consecutive integer (can be any label).
 * graph:addVertexIfNotExists: allows user to add vertices later after the graph is created
 * graph:removeVertex: allows user to delete a vertex and its edges
 * graph:addEdge: Now if the vertices on which the edge is to be added does not exists in the graph, they will be automatically added
