@@ -13,7 +13,6 @@ function DepthFirstSearch.create()
     local s = {}
     setmetatable(s, DepthFirstSearch)
 
-
     s.marked = {}
     s.pathTo = {}
 
@@ -49,7 +48,7 @@ function DepthFirstSearch:hasPathTo(v)
 end
 
 function DepthFirstSearch:getPathTo(v)
-    local stack = require('data.stack')
+    local stack = require('luagraphs.data.stack')
     local path = stack.create()
     local x = v
     while x ~= self.s do

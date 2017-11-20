@@ -27,7 +27,7 @@ function BreadthFirstSearch:run(G, s)
         self.pathTo[v] = -1
     end
 
-    local queue = require('data.queue').create()
+    local queue = require('luagraphs.data.queue').create()
 
     queue:enqueue(s)
     while queue:isEmpty() == false do
@@ -52,7 +52,7 @@ function BreadthFirstSearch:hasPathTo(v)
 end
 
 function BreadthFirstSearch:getPathTo(v)
-    local stack = require('data.stack')
+    local stack = require('luagraphs.data.stack')
     local path = stack.create()
     local x = v
     while x ~= self.s do

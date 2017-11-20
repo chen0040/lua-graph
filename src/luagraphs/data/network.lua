@@ -30,11 +30,11 @@ function network.FlowNetwork.create(V)
     local s = {}
     setmetatable(s, network.FlowNetwork)
 
-    s.vertexList = require('data.list').create()
+    s.vertexList = require('luagraphs.data.list').create()
     s.adjList = {}
     for v = 0,V-1 do
         s.vertexList:add(v)
-        s.adjList[v] = require('data.list').create()
+        s.adjList[v] = require('luagraphs.data.list').create()
     end
     return s
 end
@@ -52,7 +52,7 @@ function network.FlowNetwork:addVertexIfNotExists(v)
         return false
     else
         self.vertexList:add(v)
-        self.adjList[v] = require('data.list').create()
+        self.adjList[v] = require('luagraphs.data.list').create()
         return true
     end
 end

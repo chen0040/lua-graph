@@ -8,8 +8,8 @@
 
 describe('KruskalMST', function()
     it('should find the minimum spanning tree', function()
-        local mst = require('mst.KruskalMST').create()
-        local g = require('data.graph').create(8)
+        local mst = require('luagraphs.mst.KruskalMST').create()
+        local g = require('luagraphs.data.graph').create(8)
         g:addEdge(0, 7, 0.16)
         g:addEdge(2, 3, 0.17)
         g:addEdge(1, 7, 0.19)

@@ -8,7 +8,7 @@
 
 describe('MinPQ', function()
     it('should add and remove the min item first', function()
-        local pq = require('data.MinPQ').create(function(a1, a2) return a1 - a2  end)
+        local pq = require('luagraphs.data.MinPQ').create(function(a1, a2) return a1 - a2  end)
         pq:add(2)
         pq:add(4)
         pq:add(1)

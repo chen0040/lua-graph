@@ -8,7 +8,7 @@
 
 describe("stack()", function()
     it("should push and pop correctly", function()
-        local stack = require('data.stack')
+        local stack = require('luagraphs.data.stack')
         local s = stack.create()
 
         s:push(10)

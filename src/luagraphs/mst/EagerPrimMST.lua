@@ -13,14 +13,14 @@ function EagerPrimMST.create()
     local s = {}
     setmetatable(s, EagerPrimMST)
 
-    s.path = require('data.list').create()
+    s.path = require('luagraphs.data.list').create()
     s.marked = {}
 
     return s
 end
 
 function EagerPrimMST:run(G)
-    self.path = require('data.list').create()
+    self.path = require('luagraphs.data.list').create()
     self.marked = {}
 
     for i = 0, G:vertexCount()-1 do
@@ -28,7 +28,7 @@ function EagerPrimMST:run(G)
         self.marked[v] = false
     end
 
-    local pq = require('data.IndexedMinPQ').create(function(e1, e2) return e1.weight - e2.weight end)
+    local pq = require('luagraphs.data.IndexedMinPQ').create(function(e1, e2) return e1.weight - e2.weight end)
     self:visit(G, 0, pq)
 
     while self.path:size() < G:vertexCount() -1 and pq:isEmpty() == false do

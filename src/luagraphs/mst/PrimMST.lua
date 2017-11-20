@@ -14,14 +14,14 @@ function PrimMST.create()
     setmetatable(s, PrimMST)
 
     s.marked = {}
-    s.path = require('data.list').create()
+    s.path = require('luagraphs.data.list').create()
     return s
 end
 
 function PrimMST:run(G)
     self.marked = {}
-    self.path = require('data.list').create()
-    local pq = require('data.MinPQ').create(function(e1, e2)
+    self.path = require('luagraphs.data.list').create()
+    local pq = require('luagraphs.data.MinPQ').create(function(e1, e2)
         return e1.weight - e2.weight
     end)
 

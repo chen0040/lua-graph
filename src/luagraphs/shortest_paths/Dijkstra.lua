@@ -34,7 +34,7 @@ function Dijkstra:run(G, s)
         self.cost[v] = Dijkstra.MAX_VALUE
     end
 
-    local pq = require('data.IndexedMinPQ').create()
+    local pq = require('luagraphs.data.IndexedMinPQ').create()
     self.cost[s] = 0
     pq:add(s, self.cost[s])
 
@@ -80,7 +80,7 @@ function Dijkstra:getPathLength(v)
 end
 
 function Dijkstra:getPathTo(v)
-    local stack = require('data.stack').create()
+    local stack = require('luagraphs.data.stack').create()
     local x = v
     while x ~= self.source do
         local e = self.edgeTo[x]

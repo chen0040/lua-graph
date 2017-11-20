@@ -14,14 +14,14 @@ function KruskalMST.create()
     setmetatable(s, KruskalMST)
 
     s.marked = {}
-    s.path = require('data.list').create()
+    s.path = require('luagraphs.data.list').create()
     return s
 end
 
 function KruskalMST:run(G)
     self.marked = {}
-    self.path = require('data.list').create()
-    local pq = require('data.MinPQ').create(function(e1, e2)
+    self.path = require('luagraphs.data.list').create()
+    local pq = require('luagraphs.data.MinPQ').create(function(e1, e2)
         return e1.weight - e2.weight
     end)
 
@@ -36,7 +36,7 @@ function KruskalMST:run(G)
         pq:add(e)
     end
 
-    local uf = require('data.UnionFind').createFromVertexList(G:vertices())
+    local uf = require('luagraphs.data.UnionFind').createFromVertexList(G:vertices())
     while pq:isEmpty() == false and self.path:size() < G:vertexCount() - 1 do
         local e = pq:delMin()
         local v = e:either()

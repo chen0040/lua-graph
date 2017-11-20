@@ -57,11 +57,11 @@ function graph.create(V, directed)
         directed = false
     end
 
-    g.vertexList = require('data.list').create()
+    g.vertexList = require('luagraphs.data.list').create()
     g.adjList = {}
     for v = 0,V-1 do
         g.vertexList:add(v)
-        g.adjList[v] = require('data.list').create()
+        g.adjList[v] = require('luagraphs.data.list').create()
     end
     g.directed = directed
 
@@ -88,7 +88,7 @@ function graph.createFromVertexList(vertices, directed)
     g.adjList = {}
     for i = 0,g.vertexList:size()-1 do
         local v = g.vertexList:get(i)
-        g.adjList[v] = require('data.list').create()
+        g.adjList[v] = require('luagraphs.data.list').create()
     end
     g.directed = directed
 
@@ -100,7 +100,7 @@ function graph:addVertexIfNotExists(v)
         return false
     else
         self.vertexList:add(v)
-        self.adjList[v] = require('data.list').create()
+        self.adjList[v] = require('luagraphs.data.list').create()
         return true
     end
 end
@@ -167,7 +167,7 @@ function graph:vertexAt(i)
 end
 
 function graph:edges()
-    local list = require('data.list').create()
+    local list = require('luagraphs.data.list').create()
 
     for i=0,self.vertexList:size()-1 do
         local v = self.vertexList:get(i)

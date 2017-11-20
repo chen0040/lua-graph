@@ -84,7 +84,7 @@ function BellmanFord:getPathLength(v)
 end
 
 function BellmanFord:getPathTo(v)
-    local stack = require('data.stack').create()
+    local stack = require('luagraphs.data.stack').create()
     local x = v
     while x ~= self.source do
         local e = self.edgeTo[x]
