@@ -8,7 +8,7 @@
 
 describe("FordFulkerson", function()
     it('should be able to find max flow of 28', function()
-        local g = require('data.network').FlowNetwork.create(8);
+        local g = require('luagraphs.data.network').FlowNetwork.create(8);
 
         g:addEdge(0, 1, 10); -- capacity from vertex 0 to vertex 1 is 10
         g:addEdge(0, 2, 5);
@@ -26,7 +26,7 @@ describe("FordFulkerson", function()
         g:addEdge(6, 2, 6);
         g:addEdge(6, 7, 10);
 
-        local method = require('flow.FordFulkerson').create()
+        local method = require('luagraphs.flow.FordFulkerson').create()
         local maxFlow = method:run(g, 0, 7)
         print('FordFulkerson max flow: ' .. maxFlow)
 

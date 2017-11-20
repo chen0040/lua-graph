@@ -8,7 +8,7 @@
 
 describe('ConnectedComponents()', function()
     it('should list the connected components in the graph', function()
-        local g = require('data.graph').create(13)
+        local g = require('luagraphs.data.graph').create(13)
         g:addEdge(0, 5)
         g:addEdge(4, 3)
         g:addEdge(0, 1)
@@ -23,7 +23,7 @@ describe('ConnectedComponents()', function()
         g:addEdge(9, 11)
         g:addEdge(5, 3)
         
-        local cc = require('connectivity.ConnectedComponents').create()
+        local cc = require('luagraphs.connectivity.ConnectedComponents').create()
         cc:run(g)
 
         print('count: ' .. cc.count)

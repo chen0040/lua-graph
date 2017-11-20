@@ -8,7 +8,7 @@
 
 describe('queue()', function()
     it('should enqueue and dequeue', function()
-        local queue = require('data.queue').create()
+        local queue = require('luagraphs.data.queue').create()
         queue:enqueue(10)
         queue:enqueue(30)
         queue:enqueue(20)

@@ -8,7 +8,7 @@
 
 describe("Dijkstra", function()
     it('should be able to find all the shortest paths from the source node', function()
-        local g = require('data.graph').create(8, true);
+        local g = require('luagraphs.data.graph').create(8, true);
 
         g:addEdge(0, 1, 5.0)
         g:addEdge(0, 4, 9.0)
@@ -29,7 +29,7 @@ describe("Dijkstra", function()
 
         local source = 0
 
-        local dijkstra = require('shortest_paths.Dijkstra').create()
+        local dijkstra = require('luagraphs.shortest_paths.Dijkstra').create()
         dijkstra:run(g, source)
         print('Dijkstra shortest path')
         for i = 0,g:vertexCount()-1 do

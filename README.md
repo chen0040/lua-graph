@@ -313,7 +313,7 @@ g:addEdge(7, 8)
 g:addEdge(9, 11)
 g:addEdge(5, 3)
 
-local cc = require('connectivity.ConnectedComponents').create()
+local cc = require('luagraphs.connectivity.ConnectedComponents').create()
 cc:run(g)
 
 print('count: ' .. cc.count)
@@ -351,7 +351,7 @@ graph:addEdge(6, 4)
 graph:addEdge(6, 9)
 graph:addEdge(7, 6)
 
-local scc = require('connectivity.StronglyConnectedComponents').create()
+local scc = require('luagraphs.connectivity.StronglyConnectedComponents').create()
 scc:run(graph)
 print(scc.count) -- return 5 components
 

@@ -8,7 +8,7 @@
 
 describe("TopoSortShortestPath", function()
     it('should be able to find all the shortest paths from the source node', function()
-        local g = require('data.graph').create(8, true);
+        local g = require('luagraphs.data.graph').create(8, true);
 
         g:addEdge(0, 1, 5.0)
         g:addEdge(0, 4, 9.0)
@@ -28,7 +28,7 @@ describe("TopoSortShortestPath", function()
         g:addEdge(7, 2, 7.0)
 
         local source = 0
-        local finder = require('shortest_paths.TopoSortShortestPath').create()
+        local finder = require('luagraphs.shortest_paths.TopoSortShortestPath').create()
         finder:run(g, source)
         print('topological sort shortest paths');
         for i = 0,g:vertexCount()-1 do

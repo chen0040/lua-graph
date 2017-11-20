@@ -9,7 +9,7 @@
 describe("Graph", function()
     describe("Undirected Unweighted Graph", function()
         it("should create an undirected unweighted graph", function()
-            local g = require('data.graph').create(6);
+            local g = require('luagraphs.data.graph').create(6);
             g:addEdge(0, 5);
             g:addEdge(2, 4);
             g:addEdge(2, 3);
@@ -36,7 +36,7 @@ describe("Graph", function()
 
     describe("Undirected Unweighted Graph With Vertices added later", function()
         it("should automatically expand the graph", function()
-            local g = require('data.graph').create(6);
+            local g = require('luagraphs.data.graph').create(6);
             g:addEdge(0, 5);
             g:addEdge(2, 4);
             g:addEdge(2, 3);
@@ -71,12 +71,12 @@ describe("Graph", function()
 
     describe('Dynamically expand and shrink a graph', function()
         it("should dynamically adjust teh graph size", function()
-            local vertices = require('data.list').create()
+            local vertices = require('luagraphs.data.list').create()
             vertices:add(3)
             vertices:add(5)
             vertices:add(10)
 
-            local g = require('data.graph').createFromVertexList(vertices)
+            local g = require('luagraphs.data.graph').createFromVertexList(vertices)
 
             assert.equal(g:vertexCount(), 3)
 
@@ -109,7 +109,7 @@ describe("Graph", function()
 
     describe("reverse()", function()
         it("should reverse the graph", function()
-            local g = require('data.graph').create(5, false)
+            local g = require('luagraphs.data.graph').create(5, false)
             g:addEdge(0, 4)
             g:addEdge(2, 1)
 

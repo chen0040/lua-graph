@@ -63,7 +63,7 @@ function stack:pop()
 end
 
 function stack:toList()
-    local result = require('data.list').create()
+    local result = require('luagraphs.data.list').create()
     local x = self.first
     while x ~= nil do
         result:add(x.value)

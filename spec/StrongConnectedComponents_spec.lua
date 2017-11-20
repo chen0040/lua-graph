@@ -8,7 +8,7 @@
 
 describe('StronglyConnectedComponents', function()
     it('should return the components that are strongly connected', function()
-        local graph = require('data.graph').create(13, true)
+        local graph = require('luagraphs.data.graph').create(13, true)
         graph:addEdge(4, 2)
         graph:addEdge(2, 3)
         graph:addEdge(3, 2)
@@ -32,7 +32,7 @@ describe('StronglyConnectedComponents', function()
         graph:addEdge(6, 9)
         graph:addEdge(7, 6)
 
-        local scc = require('connectivity.StronglyConnectedComponents').create()
+        local scc = require('luagraphs.connectivity.StronglyConnectedComponents').create()
         scc:run(graph)
         assert.equal(scc.count, 5)
 

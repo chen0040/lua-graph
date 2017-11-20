@@ -6,7 +6,7 @@
 -- To change this template use File | Settings | File Templates.
 --
 
-local list = require 'data.list'
+local list = require('luagraphs.data.list')
 
 describe('list', function()
 

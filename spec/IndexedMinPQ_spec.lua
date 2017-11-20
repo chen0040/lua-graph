@@ -8,7 +8,7 @@
 
 describe('IndexedMinPQ', function()
     it('should be store indexed keys in a priority queue', function()
-        local pq = require('data.IndexedMinPQ').create()
+        local pq = require('luagraphs.data.IndexedMinPQ').create()
 
         pq:add(0, 10)
         pq:add(1, 1)

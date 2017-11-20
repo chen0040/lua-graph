@@ -13,7 +13,7 @@ function TopologicalSort.create()
     local s = {}
     setmetatable(s, TopologicalSort)
 
-    s.reversedPostOrder = require('data.stack').create()
+    s.reversedPostOrder = require('luagraphs.data.stack').create()
     s.marked = {}
 
     return s

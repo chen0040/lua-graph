@@ -8,7 +8,7 @@
 
 describe('UnionFind', function()
     it('should connect vertices that are union', function()
-        local uf = require('data.UnionFind').create(10)
+        local uf = require('luagraphs.data.UnionFind').create(10)
 
         uf:union(2, 4)
         uf:union(1, 2)

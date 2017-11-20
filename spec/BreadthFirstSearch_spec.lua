@@ -7,7 +7,7 @@
 --
 
 describe('BreadthFirstSearch()', function()
-    local g = require('data.graph').create(6)
+    local g = require('luagraphs.data.graph').create(6)
     g:addEdge(0, 5);
     g:addEdge(2, 4);
     g:addEdge(2, 3);
@@ -16,7 +16,7 @@ describe('BreadthFirstSearch()', function()
     g:addEdge(3, 4);
     g:addEdge(3, 5);
     g:addEdge(0, 2);
-    local bfs = require('search.BreadthFirstSearch').create()
+    local bfs = require('luagraphs.search.BreadthFirstSearch').create()
     local s = 0
     bfs:run(g, s)
 

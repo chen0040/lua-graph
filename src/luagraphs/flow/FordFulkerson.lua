@@ -59,7 +59,7 @@ function FordFulkerson:hasPath()
         self.marked[v] = false
     end
 
-    local queue = require('data.queue').create()
+    local queue = require('luagraphs.data.queue').create()
     queue:enqueue(self.source)
     while queue:isEmpty() == false do
         local x = queue:dequeue()
@@ -85,7 +85,7 @@ function FordFulkerson:hasPath()
 end
 
 function FordFulkerson:minCuts()
-    local result = require('data.list').create()
+    local result = require('luagraphs.data.list').create()
     for i = 0,self.network:vertexCount()-1 do
         local v = self.network:vertexAt(i)
         local adj_v = self.network:adj(v)

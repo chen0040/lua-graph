@@ -30,7 +30,7 @@ function StronglyConnectedComponents:run(G)
     end
 
     local g_prime = G:reverse()
-    local topo_sort = require('sort.TopologicalSort').create()
+    local topo_sort = require('luagraphs.sort.TopologicalSort').create()
     topo_sort:run(g_prime)
     local order = topo_sort:path()
 

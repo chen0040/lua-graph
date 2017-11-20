@@ -8,7 +8,7 @@
 
 describe('TopoloicalSort()', function()
     it('should topo sort', function()
-        local dag = require('data.graph').create(7, true)
+        local dag = require('luagraphs.data.graph').create(7, true)
 
         local edges = { --from, to
             {0, 5},
@@ -28,7 +28,7 @@ describe('TopoloicalSort()', function()
             dag:addEdge(edges[edgenum][1], edges[edgenum][2])
         end
 
-        local ts = require('sort.TopologicalSort').create()
+        local ts = require('luagraphs.sort.TopologicalSort').create()
         ts:run(dag)
 
         local path = ts:path()
